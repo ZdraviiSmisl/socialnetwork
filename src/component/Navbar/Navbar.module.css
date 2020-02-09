@@ -1,0 +1,32 @@
+.nav {
+  grid-area: n;
+  background-color: burlywood;
+
+  padding: 20px;
+}
+
+.item  a{
+  color:white;
+  text-decoration: none;
+}
+
+.item a.activeLink {
+  color: cadetblue;
+}
+
+.friends a {
+  line-height:20;
+padding-bottom: 15px;
+}
+
+.friendsItems {
+ padding-bottom: 15px;
+}
+
+
+.name img {
+  width: 25px;
+  height: 25px;
+
+  border-radius: 30px;
+}
