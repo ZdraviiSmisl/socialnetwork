@@ -6,20 +6,20 @@ import {connect} from "react-redux";
 
 
 
- let mapStateToProps =(state)=>{
-     return{
-         dialogsPage: state.dialogsPage
-     }
- }
+let mapStateToProps =(state)=>{
+    return{
+        dialogsPage: state.dialogsPage
+    }
+}
 let mapDispatchToProps =(dispatch) =>{
-     return {
-         addMessage:()=>{
-             dispatch(addMessageActionCreator());
-         },
-         updateNewMessage: (text)=>{
+    return {
+        addMessage:()=>{
+            dispatch(addMessageActionCreator());
+        },
+        updateNewMessage: (text)=>{
             dispatch(updateNewMessageTextActionCreator(text)) ;
-         }
-     }
+        }
+    }
 }
 const DialogsContainer =connect(mapStateToProps,mapDispatchToProps)(Dialogs);
 export default DialogsContainer;
