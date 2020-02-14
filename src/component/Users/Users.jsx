@@ -26,7 +26,7 @@ const Users = (props) => {
                 }}>Unfollow</button> : <button onClick={() => {
                     props.follow(u.id)
                 }}>Follow</button>}</div>
-            </span>
+             </span>
 
                 <span>
                   <span>
