@@ -4,8 +4,8 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
-const Profile = () => {
-
+class ProfileContainer extends React.Component {
+render() {
     return (
         <div>
             <ProfileInfo/>
@@ -14,7 +14,8 @@ const Profile = () => {
         </div>
     );
 };
-export default Profile;
+}
+export default ProfileContainer;
 
 
 // store={props.store}
