@@ -11,6 +11,7 @@ import Music from "./component/Music/Music";
 import FriendItem from "./component/Navbar/FriendItem/FriendItem";
 import DialogsContainer from "./component/Dialogs/DialogsContainer";
 import UsersContainer from "./component/Users/UsersContainer";
+import ProfileContainer from "./component/Profile/ProfileContainer";
 
 
 const App = (props) => {
@@ -27,7 +28,9 @@ const App = (props) => {
 
                 <Route path='/dialogs' render={() => <DialogsContainer/>}/>
 
-                <Route path='/profile' render={() => <Profile/>}/>
+                <Route
+                    path='/profile/:userId?' //? означает что наш юзер айди опциональный параметр,совпадения нашего урла с роутами может и не быть
+                    render={() => <ProfileContainer/>}/>
                 <Route path='/news' component={News}/>
                 <Route path='/settings' component={Settings}/>
                 <Route path='/music' component={Music}/>

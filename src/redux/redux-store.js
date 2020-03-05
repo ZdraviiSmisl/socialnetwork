@@ -4,14 +4,14 @@ import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer from "./users-reducer";
 
-let reducers= combineReducers({
-    profilePage:profileReducer,
-    dialogsPage:dialogsReducer,
-    sidebarPage:sidebarReducer,
-    usersPage:usersReducer
+let reducers = combineReducers({
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    sidebarPage: sidebarReducer,
+    usersPage: usersReducer
 
 })
 
 let store = createStore(reducers);
-
+window.store = store;//привязали наш store к объекту window,что бы  в любой момент посмотреть наш стэйт с помощью коммнды getState()
 export default store;
