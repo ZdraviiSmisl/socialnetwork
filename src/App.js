@@ -1,9 +1,7 @@
 /* eslint-disable no-undef */
 import React from "react";
 import "./App.css";
-import Header from "./component/Header/Header";
 import Navbar from "./component/Navbar/Navbar";
-import Profile from "./component/Profile/Profile";
 import {Route} from "react-router-dom";
 import News from "./component/News/News";
 import Settings from "./component/Settings/Settings";
@@ -12,6 +10,7 @@ import FriendItem from "./component/Navbar/FriendItem/FriendItem";
 import DialogsContainer from "./component/Dialogs/DialogsContainer";
 import UsersContainer from "./component/Users/UsersContainer";
 import ProfileContainer from "./component/Profile/ProfileContainer";
+import HeaderContainer from "./component/Header/HeaderContainer";
 
 
 const App = (props) => {
@@ -20,7 +19,7 @@ const App = (props) => {
 
 
         <div className="app-wrapper">
-            <Header/>
+            <HeaderContainer/>
 
             <Navbar/>
 

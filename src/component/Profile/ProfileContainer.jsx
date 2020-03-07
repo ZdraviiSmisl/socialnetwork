@@ -2,7 +2,7 @@ import React from 'react';
 import Profile from './Profile';
 import * as axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfile} from "../../redux/profile-reducer";
+import {setUserProfile} from "../../redux(BLL)/profile-reducer";
 import {withRouter} from "react-router-dom";
 
 class ProfileContainer extends React.Component {
@@ -11,7 +11,7 @@ class ProfileContainer extends React.Component {
         if (!userId) {
             userId = 2; /*// если параметра юзер айди  нет в урле .. то по умолчанию ставим цифру 2*/
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId) /*//либо  если в конце с помощтю конкатинации добавить через плюс*/
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId) /*//id конце с помощтю конкатинации добавить через плюс*/
             .then(response => {
                 this.props.setUserProfile(response.data); /*//берём тут profile для AC*/
             });

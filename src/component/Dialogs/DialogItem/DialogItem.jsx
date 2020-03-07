@@ -3,7 +3,7 @@ import f from "../Dialogs.module.css";
 import {NavLink} from "react-router-dom";
 
 const DialogItem = (props) => {
-    const path = '/dialogs/' + props.id   // вынесу путь отдельно в переменную path  перед return;
+    const path = '/dialogs/' + props.id   /*// вынесу путь отдельно в переменную path  перед return;*/
     return (
 
         <div className={f.dialog + " " + f.active}>
