@@ -3,35 +3,16 @@ import f from "./../Dialogs.module.css";
 
 
 const Message = (props) => {
-  /*  const newMessageElement = React.createRef();
-    const addMessage = () => {
-        let text = newMessageElement.current.value;
-        alert(text);
-    }*/
 
-    return (
-        <div>
+  return (
+    <div>
 
-         {/*   <div>
-            <div>
-                <textarea ref={newMessageElement}>  </textarea>
-            </div>
-            <div>
-                <button onClick={addMessage}>Add Message</button>
-            </div>
-            </div>*/}
-            <div className={f.message}> {props.message}</div>
+      <div className={f.message}> {props.message}</div>
 
-        </div>
+    </div>
+  )
 
+};
 
-
-
-
-
-            )
-
-            };
-
-            export default Message;
+export default Message;
 

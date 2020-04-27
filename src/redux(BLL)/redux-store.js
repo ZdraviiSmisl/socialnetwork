@@ -1,18 +1,19 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import profileReducer from "./profile-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer from "./users-reducer";
 import authReducer from "./authentications-reducer";
+import  thunkMiddleware  from 'redux-thunk';
 
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebarPage: sidebarReducer,
     usersPage: usersReducer,
-    authentication: authReducer
+    auth:authReducer
 })
 
-let store = createStore(reducers);
-window.store = store;//привязали наш store к объекту window,что бы  в любой момент посмотреть наш стэйт с помощью коммнды getState()
+let store = createStore(reducers,applyMiddleware(thunkMiddleware));
+window.store = store;
 export default store;

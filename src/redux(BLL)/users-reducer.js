@@ -1,3 +1,5 @@
+import {api, getUsers} from "../api(DAL)/api";
+import * as axios from 'axios';
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = 'SET_USERS';
@@ -71,7 +73,7 @@ const usersReducer = (state = initialState, action) => {
             return {
                 ...state,  buttonFollowingStatus: action.isFetching?
                     [...state.buttonFollowingStatus,action.userId]:/*если подписка(isFetching=true),мы добавляем в копию массива пользователя*/
-                    [state.buttonFollowingStatus.filter(id=>id!=action.userId)] /*если отписка(isFetching=false  ) фильтруем  копию массива от него*/
+                    [state.buttonFollowingStatus.filter(id=>id!==action.userId)] /*если отписка(isFetching=false  ) фильтруем  копию массива от него*/
 
             };
         default:
@@ -80,11 +82,22 @@ const usersReducer = (state = initialState, action) => {
 
 };
 
-export const follow = (userId) => ({type: FOLLOW, userId})
-export const unfollow = (userId) => ({type: UNFOLLOW, userId})
-export const setUsers = (users) => ({type: SET_USERS, users})
-export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
-export const setUsersTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount})
+export const follow = (userId) => ({type: FOLLOW, userId});
+export const unfollow = (userId) => ({type: UNFOLLOW, userId});
+export const setUsers = (users) => ({type: SET_USERS, users});
+export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage});
+export const setUsersTotalCount = (totalUsersCount) => ({type: SET_TOTAL_USERS_COUNT, count: totalUsersCount});
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
-export const toggleFollowingStatus=(isFetching,userId)=>({type: TOGGLE_IS_FOLLOWING_STATUS, isFetching,userId})
+export const toggleFollowingStatus=(isFetching,userId)=>({type: TOGGLE_IS_FOLLOWING_STATUS, isFetching,userId});
+
+ export const getUsers=(currentPage,pageSize)=>{
+    return (dispatсh)=> {
+         dispatсh(toggleIsFetching(true));
+         api.getUsers(currentPage, pageSize).then(data => {
+             dispatсh(toggleIsFetching(false));
+             dispatсh(setUsers(data.items));
+             dispatсh(setUsersTotalCount(data.totalCount));
+         });
+     }
+ }
 export default usersReducer;

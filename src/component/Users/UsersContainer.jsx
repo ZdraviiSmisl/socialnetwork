@@ -1,40 +1,33 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {
-    follow,
+    follow, getUsers,
     setCurrentPage,
     setUsers,
     setUsersTotalCount, toggleFollowingStatus,
     toggleIsFetching,
     unfollow
 } from '../../redux(BLL)/users-reducer';
-import * as axios from 'axios';
+
 import Users from './Users';
 import Preloader from "../common/Preloader/Preloader";
-import {getUsers} from "../../api(DAL)/api";
 
-/*создать ещё функций в папке DLL для других запросов (follow,unfollow)-63 */
+
 class UsersContainer extends React.Component {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true);
-        getUsers(this.props.currentPage, this.props.pageSize).then(data => { /*первый зен в гетюзерс возвращает полный ответ,2й-тот что здесь,только data,так как весь ответ с сервера нашей компоненте не нужен*/
-
-            this.props.toggleIsFetching(false);
-            this.props.setUsers(data.items);
-            this.props.setUsersTotalCount(data.totalCount);
-        });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
     }
-
-    onPageChanged = (pageNumber) => {     /*// второй запрос делаем   при переключении страницы,а повторно сайз вызываем   так как на странице может быть другое колличество пользователей*/
+    onPageChanged = (pageNumber) => {
+       /* this.props.getUsers(pageNumber, this.props.pageSize);
         this.props.toggleIsFetching(true);
         this.props.setCurrentPage(pageNumber);
 
-        getUsers(pageNumber, this.props.pageSize).then(data => {
+        api.getUsers(pageNumber, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false);
             this.props.setUsers(data.items);
 
-        });
+        });*/
     };
 
     render() {
@@ -70,39 +63,7 @@ let mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setUsersTotalCount,
-    toggleIsFetching,
-    toggleFollowingStatus
-})(UsersContainer); /*connect внутри создатст колбэки которые  внутри задиспатчат то что вернут эшн криетеры с таким же именами как у колбэков*/
-
-/*let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (userId) => {
-            dispatch(followAC(userId));
-        },
-        unfollow: (userId) => {
-            dispatch(unfollowAC(userId));
-        },
-        setUsers: (users) => {
-
-            dispatch(setUsersAC(users));
-        },
-        setCurrentPage: (pageNamber) => {
-
-            dispatch(setCurrentPageAC(pageNamber));
-        },
-
-        setTotalUsersCount: (totalCount) => {
-
-            dispatch(setUsersTotalCountAC(totalCount));
-        },
-        toggleIsFetching: (isFetching) => {
-            dispatch(toggleIsFetchingAC(isFetching));
-        }
-
-    }
-};*/
+    follow, unfollow, setUsers,
+    setCurrentPage, setUsersTotalCount, toggleIsFetching,
+    toggleFollowingStatus, getUsers
+})(UsersContainer);

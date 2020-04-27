@@ -10,17 +10,13 @@ const MyPosts = (props) => {
 
     const onAddPost=()=>{
      props.addPost();
-
-
     }
-
 
     const onPostChange = () => {
          let text=newPostElement.current.value;
-
     props.updateNewPostText(text);
-
     }
+
     return (
         <div className = {f.postBlock}>
           <h3>My Posts </h3>
