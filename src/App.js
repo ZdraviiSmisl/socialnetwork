@@ -1,16 +1,17 @@
-/* eslint-disable no-undef */
-import React from "react";
-import "./App.css";
-import Navbar from "./component/Navbar/Navbar";
-import {Route} from "react-router-dom";
-import News from "./component/News/News";
-import Settings from "./component/Settings/Settings";
+
+import React from 'react';
+import './App.css';
+import Navbar from './component/Navbar/Navbar';
+import {Route} from 'react-router-dom';
+import News from './component/News/News';
+import Settings from './component/Settings/Settings';
 import Music from "./component/Music/Music";
 import FriendItem from "./component/Navbar/FriendItem/FriendItem";
 import DialogsContainer from "./component/Dialogs/DialogsContainer";
 import UsersContainer from "./component/Users/UsersContainer";
 import ProfileContainer from "./component/Profile/ProfileContainer";
 import HeaderContainer from "./component/Header/HeaderContainer";
+import LoginPage from "./component/Login/Login";
 
 
 const App = (props) => {
@@ -35,6 +36,7 @@ const App = (props) => {
                 <Route path='/music' component={Music}/>
                 <Route path='/friends' render={() => <FriendItem/>}/>
                 <Route path='/users' render={() => <UsersContainer/>}/>
+                <Route path='/login' render={() => <LoginPage/>}/>
             </div>
 
         </div>
