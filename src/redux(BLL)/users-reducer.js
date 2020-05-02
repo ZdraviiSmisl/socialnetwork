@@ -1,4 +1,4 @@
-import {api, getUsers, userApi} from "../api(DAL)/api";
+import { userApi} from "../api(DAL)/api";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
