@@ -1,36 +1,33 @@
-import React, {createRef} from "react";
+import React from "react";
 import f from "./MyPosts.module.css";
 import Post from "./Post/Post";
+import ProfileReduxForm from "../../FormForProject/ProfileForm";
 
 
 const MyPosts = (props) => {
 
-    const postsElements = props.posts.map( p => <Post key={p.id} massage = {p.message} lickesCaunt={p.likesCount}/>)
-    const newPostElement=React.createRef();
+    const postsElements = props.posts.map(p => <Post key={p.id}
+                                                     massage={p.message}
+                                                     lickesCaunt={p.likesCount}/>)
 
-    const onAddPost=()=>{
-     props.addPost();
+
+    const addNewPost = (values) => {
+        props.addPost(values.NewPostText);
     }
 
-    const onPostChange = () => {
-         let text=newPostElement.current.value;
-    props.updateNewPostText(text);
-    }
 
     return (
-        <div className = {f.postBlock}>
-          <h3>My Posts </h3>
+        <div className={f.postBlock}>
+            <h3>My Posts </h3>
             <div>
                 <div>
-                    <textarea placeholder='knock your message here' onChange={onPostChange}ref={newPostElement}
-                               value={props.newPostText}/>
-                </div>
-                <div>
-                    <button onClick={onAddPost}>Add post</button>
+
+                    <ProfileReduxForm onSubmit={addNewPost}/>
                 </div>
 
+
             </div>
-            <div className = {f.posts}>
+            <div className={f.posts}>
                 {postsElements}
 
             </div>

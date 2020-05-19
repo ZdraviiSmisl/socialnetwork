@@ -8,8 +8,15 @@ import {
 } from '../../redux(BLL)/users-reducer';
 import Users from './Users';
 import Preloader from "../common/Preloader/Preloader";
-import {WithRedirect} from '../hocs/WithUserRedirect';
 import {compose} from 'redux';
+import {
+    getCurrentPage,
+    getFetching,
+    getFollowingStatus,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../../redux(BLL)/users-selector";
 
 
 class UsersContainer extends React.Component {
@@ -40,7 +47,7 @@ class UsersContainer extends React.Component {
 
 }
 
-let mapStateToProps = (state) => {
+/*let mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
@@ -49,12 +56,23 @@ let mapStateToProps = (state) => {
         isFetching: state.usersPage.isFetching,
         buttonFollowingStatus: state.usersPage.buttonFollowingStatus
     }
+};*/
+
+let mapStateToProps = (state) => {
+    return {
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getFetching(state),
+        buttonFollowingStatus: getFollowingStatus(state)
+    }
 };
 
 
 
 
-export default compose(WithRedirect,
+export default compose(
   connect(mapStateToProps,
   {follow, unfollow, setCurrentPage, toggleFollowingStatus, get_Users
   }))(UsersContainer)
